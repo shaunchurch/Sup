@@ -31,11 +31,20 @@
     <string name="error_video_size">The selected video must be less than 10MB</string>
     <string name="error_file_not_found">Error opening file.</string>
     <string name="error_file_size_too_large">The selected file is too large! Select a new file.</string>
+
     <string-array name="camera_choices">
         <item>Take Picture</item>
         <item>Take Video</item>
         <item>Choose Picture</item>
         <item>Choose Video</item>
     </string-array>
+
+    <string name="title_activity_recipients">Choose Recipient</string>
+    <string name="empty_recipients_list_message">Choose some friends first.</string>
+    <string name="action_send">Send</string>
+    <string name="error_selecting_file_message">There was an error with the file selected. Please select a different file.</string>
+    <string name="error_selecting_file_title">We\'re sorry!</string>
+    <string name="success_message">Message sent!</string>
+    <string name="error_sending_message">There was an error sending your message. Please try again.</string>
 
 </resources>
