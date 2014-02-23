@@ -50,7 +50,17 @@
             android:name="com.pixsys.ribbit.RecipientsActivity"
             android:label="@string/title_activity_recipients"
             android:parentActivityName="com.pixsys.ribbit.MainActivity"
-            android:screenOrientation="portrait" >>
+            android:screenOrientation="portrait" >
+>
+        </activity>
+        <activity
+            android:name="com.pixsys.ribbit.ViewImageActivity"
+            android:label="@string/title_activity_view_image"
+            android:parentActivityName="com.pixsys.ribbit.MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="MainActivity" />
         </activity>
     </application>
 
