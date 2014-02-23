@@ -23,7 +23,6 @@ public class ViewImageActivity extends Activity {
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
