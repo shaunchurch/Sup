@@ -12,10 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/usernameField"
+        android:layout_marginTop="44dp"
+        android:hint="@string/username_hint"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="112dp"
-        android:hint="@string/username_hint" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
         android:layout_below="@+id/usernameField"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="24dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -36,10 +37,10 @@
         android:ems="10"
         android:id="@+id/emailField"
         android:hint="@string/email_hint"
-        android:layout_marginTop="38dp"
         android:layout_below="@+id/passwordField"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp" />
 
     <Button
         android:layout_width="match_parent"
@@ -48,5 +49,5 @@
         android:id="@+id/signupButton"
         android:layout_below="@+id/emailField"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp" />
+        android:layout_marginTop="24dp" />
 </RelativeLayout>
