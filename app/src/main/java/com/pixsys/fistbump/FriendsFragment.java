@@ -1,4 +1,4 @@
-package com.pixsys.ribbit;
+package com.pixsys.fistbump;
 
 import android.app.AlertDialog;
 import android.os.Bundle;

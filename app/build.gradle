@@ -7,17 +7,17 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "0.1.1"
     }
 
     signingConfigs {
         debug {
-            storeFile file("debug.keystore")
+            storeFile file("/Users/shaun/.android/debug.keystore")
         }
 
         myConfig {
-            storeFile file("keystore.keystore")
+            storeFile file("/Users/shaun/.android/keystore.keystore")
             storePassword "nf7fEJXMcTWhWsz3tknH"
             keyAlias "fistbump"
             keyPassword "nf7fEJXMcTWhWsz3tknH"
@@ -31,6 +31,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
             signingConfig signingConfigs.myConfig
 
+        }
+
+        debug {
+            runProguard false
+            signingConfig signingConfigs.debug
         }
     }
 }

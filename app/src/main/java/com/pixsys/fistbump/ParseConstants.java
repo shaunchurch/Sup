@@ -1,4 +1,4 @@
-package com.pixsys.ribbit;
+package com.pixsys.fistbump;
 
 /**
  * Created by shaun on 22/02/2014.

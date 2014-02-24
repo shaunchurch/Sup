@@ -1,4 +1,4 @@
-package com.pixsys.ribbit;
+package com.pixsys.fistbump;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

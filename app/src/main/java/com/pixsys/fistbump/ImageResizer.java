@@ -1,6 +1,4 @@
-package com.pixsys.ribbit;
-
-import java.io.ByteArrayOutputStream;
+package com.pixsys.fistbump;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

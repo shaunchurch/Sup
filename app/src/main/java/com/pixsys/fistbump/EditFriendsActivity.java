@@ -1,11 +1,9 @@
-package com.pixsys.ribbit;
+package com.pixsys.fistbump;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -38,13 +36,13 @@ public class EditFriendsActivity extends ListActivity {
         // make list selectable
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
+        
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         mCurrentUser = ParseUser.getCurrentUser();
         mFriendsReleation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
 

@@ -1,6 +1,5 @@
-package com.pixsys.ribbit;
+package com.pixsys.fistbump;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.net.Uri;
@@ -15,17 +14,21 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.FunctionCallback;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.parse.SendCallback;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class RecipientsActivity extends ListActivity {
@@ -188,12 +191,68 @@ public class RecipientsActivity extends ListActivity {
         return recipientIds;
     }
 
+
+    protected void triggerNotifications() {
+
+        ParseCloud.callFunctionInBackground("hello", new HashMap<String, Object>(), new FunctionCallback<String>() {
+
+            @Override
+            public void done(String result, ParseException e) {
+                if (e == null) {
+                    // result is "Hello world!"
+                    Toast.makeText(RecipientsActivity.this, result, Toast.LENGTH_LONG).show();
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);
+                    builder.setMessage(e.getMessage())
+                            .setTitle(getString(R.string.error_selecting_file_title))
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+        });
+
+    }
+
     protected void send(ParseObject message) {
+
         message.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if(e == null) {
                     // success
+                    // Create our Installation query
+//                    ParseQuery pushQuery = ParseInstallation.getQuery();
+//                    for(int i = 0; recipientIds.size(); i++) {
+//                        pushQuery.whereEqualTo("user", ));
+//                    }
+//                    pushQuery.whereEqualTo("user", ParseUser.getCurrentUser());
+//
+//
+//                    // Send push notification to query
+//                    ParsePush push = new ParsePush();
+//                    push.setQuery(pushQuery); // Set our Installation query
+//                    push.setMessage("Willie Hayes injured by own pop fly.");
+//                    push.sendInBackground(new SendCallback() {
+//                        @Override
+//                        public void done(ParseException e) {
+//                            if(e == null) {
+//
+//                                Toast.makeText(RecipientsActivity.this, "The aliens are among us.", Toast.LENGTH_LONG).show();
+//                            } else {
+//                                AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);
+//                                builder.setMessage(e.getMessage())
+//                                        .setTitle(getString(R.string.error_general))
+//                                        .setPositiveButton(android.R.string.ok, null);
+//                                AlertDialog dialog = builder.create();
+//                                dialog.show();
+//                            }
+//                        }
+//                    });
+
+                    triggerNotifications();
+
+
                     Toast.makeText(RecipientsActivity.this, getString(R.string.success_message), Toast.LENGTH_LONG).show();
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);

@@ -1,4 +1,4 @@
-package com.pixsys.ribbit;
+package com.pixsys.fistbump;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,7 +7,6 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
@@ -17,6 +16,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InboxFragment extends ListFragment {
@@ -66,11 +66,16 @@ public class InboxFragment extends ListFragment {
 //                            usernames);
 
 
-                    MessageAdapter adapter = new MessageAdapter(
-                            getListView().getContext(),
-                            mMessages);
+                    if(getListView().getAdapter() == null) {
+                        MessageAdapter adapter = new MessageAdapter(
+                                getListView().getContext(),
+                                mMessages);
 
-                    setListAdapter(adapter);
+                        setListAdapter(adapter);
+                    } else {
+                        // refill the adapter
+                        ((MessageAdapter)getListView().getAdapter()).refill(mMessages);
+                    }
 
                 } else {
                     // failed
@@ -103,7 +108,26 @@ public class InboxFragment extends ListFragment {
 
         }
 
+        // Delete it
+        List<String> ids = message.getList(ParseConstants.KEY_RECIPIENT_IDS);
 
+        if(ids.size() == 1) {
+            // last recipient - delete message
+            message.deleteInBackground();
+
+        } else {
+            // remove recipient and save
+            ids.remove(ParseUser.getCurrentUser().getObjectId());
+
+            ArrayList<String> idsToRemove = new ArrayList<String>();
+
+            
+            idsToRemove.add(ParseUser.getCurrentUser().getObjectId());
+
+            message.removeAll(ParseConstants.KEY_RECIPIENT_IDS, idsToRemove);
+            message.saveInBackground();
+
+        }
 
     }
 }
