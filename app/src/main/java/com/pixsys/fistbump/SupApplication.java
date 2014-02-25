@@ -22,6 +22,7 @@ public class SupApplication extends Application {
         // Save the current Installation to Parse.
         ParseInstallation installation = ParseInstallation.getCurrentInstallation();
         installation.put("user", ParseUser.getCurrentUser());
+        installation.put("userId", ParseUser.getCurrentUser().getObjectId());
         installation.saveInBackground();
 
     }
