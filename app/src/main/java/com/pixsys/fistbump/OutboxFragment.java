@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InboxFragment extends ListFragment {
+public class OutboxFragment extends ListFragment {
 
     protected List<ParseObject> mMessages;
 
@@ -38,12 +37,10 @@ public class InboxFragment extends ListFragment {
         super.onResume();
 
         getActivity().setProgressBarIndeterminateVisibility(true);
-        Log.d("onResume", "onRESUME!");
 
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(ParseConstants.CLASS_MESSAGES);
-        query.whereEqualTo(ParseConstants.KEY_RECIPIENT_IDS, ParseUser.getCurrentUser().getObjectId());
+        query.whereEqualTo(ParseConstants.KEY_SENDER_ID, ParseUser.getCurrentUser().getObjectId());
         query.addDescendingOrder(ParseConstants.KEY_CREATED_AT);
-
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> messages, ParseException e) {
@@ -53,15 +50,15 @@ public class InboxFragment extends ListFragment {
                     // found messages
                     mMessages = messages;
 
-//                    String[] usernames = new String[mMessages.size()];
-//
-//                    int i = 0;
-//                    for(ParseObject message : mMessages) {
-//                        usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
-//                        i++;
-//                    }
+                    String[] usernames = new String[mMessages.size()];
 
-                    if(getListView().getAdapter() == null) {
+                    int i = 0;
+                    for(ParseObject message : mMessages) {
+                            usernames[i] = message.getString(ParseConstants.KEY_SENDER_NAME);
+                            i++;
+                    }
+
+                   if(getListView().getAdapter() == null) {
                         MessageAdapter adapter = new MessageAdapter(
                                 getListView().getContext(),
                                 mMessages);
@@ -103,33 +100,5 @@ public class InboxFragment extends ListFragment {
             startActivity(intent);
 
         }
-
-        // add this user to the message's readIds field (if unique)
-        String userToAdd = ParseUser.getCurrentUser().getObjectId();
-
-        message.addUnique(ParseConstants.KEY_READ_IDS, userToAdd);
-        message.saveInBackground();
-
-        // Delete things
-//        List<String> ids = message.getList(ParseConstants.KEY_RECIPIENT_IDS);
-//
-//        if(ids.size() == 1) {
-//            // last recipient - delete message
-//            message.deleteInBackground();
-//
-//        } else {
-//            // remove recipient and save
-//            ids.remove(ParseUser.getCurrentUser().getObjectId());
-//
-//            ArrayList<String> idsToRemove = new ArrayList<String>();
-//
-//
-//            idsToRemove.add(ParseUser.getCurrentUser().getObjectId());
-//
-//            message.removeAll(ParseConstants.KEY_RECIPIENT_IDS, idsToRemove);
-//            message.saveInBackground();
-//
-//        }
-
     }
 }

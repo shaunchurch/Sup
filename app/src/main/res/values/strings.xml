@@ -4,6 +4,7 @@
     <string name="app_name">Fist Bump</string>
     <string name="title_section1">Inbumps</string>
     <string name="title_section2">Friends</string>
+    <string name="title_section3">Outbumps</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Login</string>
     <string name="hello_world">Hello world!</string>
@@ -48,5 +49,6 @@
     <string name="error_sending_message">There was an error sending your message. Please try again.</string>
     <string name="title_activity_view_image">Fist Bump</string>
     <string name="error_loading_image">There was an error loading the image. Try again.</string>
+    <string name="bump_button_text">Fist Bump</string>
 
 </resources>

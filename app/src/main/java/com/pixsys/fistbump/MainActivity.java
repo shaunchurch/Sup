@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
+import com.parse.PushService;
 
 public class MainActivity extends FragmentActivity implements
         ActionBar.TabListener {
@@ -189,6 +190,8 @@ public class MainActivity extends FragmentActivity implements
             Log.i(TAG, currentUser.getUsername());
         }
 
+//        PushService.setDefaultPushCallback(this, ViewImageActivity.class);
+
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -350,5 +353,10 @@ public class MainActivity extends FragmentActivity implements
     @Override
     public void onTabReselected(ActionBar.Tab tab,
                                 FragmentTransaction fragmentTransaction) {
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }

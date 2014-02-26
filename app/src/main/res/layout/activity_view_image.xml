@@ -15,5 +15,21 @@
         android:scaleType="fitCenter"
          />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bump_button_text"
+        android:id="@+id/buttonBumpBack"
+        android:layout_alignParentBottom="true"
+        android:background="#CC000000"
+        android:textColor="#ffffff"
+        android:paddingTop="@dimen/message_list_item_vertical_margin"
+        android:paddingBottom="@dimen/message_list_item_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        />
+
+
 
 </RelativeLayout>

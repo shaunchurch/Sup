@@ -161,6 +161,7 @@ public class RecipientsActivity extends ListActivity {
         message.put(ParseConstants.KEY_SENDER_NAME, ParseUser.getCurrentUser().getUsername());
         message.put(ParseConstants.KEY_RECIPIENT_IDS, getRecipientIds());
         message.put(ParseConstants.KEY_FILE_TYPE, mFileType);
+        message.put(ParseConstants.KEY_NOTIFICATION_SENT, false);
 
         byte[] fileBytes = FileHelper.getByteArrayFromFile(this, mMediaUri);
 
